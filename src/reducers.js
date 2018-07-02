@@ -19,28 +19,38 @@ const initialStateRobots = {
 export const searchRobots = (state=initialStateSearch, action={}) => {
     switch (action.type) {
         case CHANGE_SEARCH_FIELD:
-            return Object.assign({}, state, { searchField: action.payload })
+            return { 
+                ...state, 
+                searchField: action.payload 
+            }
         default:
             return state
     }
 }
 
+/*
+    {...state, key: value} is the same, in this context that: Object.assign({}, state, {key: value})
+    just lest verbose.
+*/
 export const requestRobots = (state=initialStateRobots, action={}) => {
     switch (action.type){
         case REQUEST_ROBOTS_PENDING:
-            return Object.assign({}, state, {
+            return {
+                ...state, 
                 isPending : true
-            })
+            }
         case REQUEST_ROBOTS_SUCCESS:
-            return Object.assign({}, state, {
+            return { 
+                ...state, 
                 isPending: false, 
                 robots: action.payload
-            })
+            }
         case REQUEST_ROBOTS_FAILED:
-            return Object.assign({}, state, {
+            return { 
+                ...state, 
                 isPending: false,
                 error: action.payload
-            })
+            }
         default:
             return state
     }
