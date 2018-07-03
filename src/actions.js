@@ -11,6 +11,8 @@ export const setSearchField = text => ({
     payload: text
 }) 
 
+/* This is by using redux thunk middleware, so once this functions is called
+it return a function and trigger redux thunk who pass dispatch */
 export const requestRobots = () => (dispatch) => {
     /* 3 States for pending Promise, success or failed */
     dispatch({ 
