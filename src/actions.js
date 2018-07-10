@@ -1,37 +1,35 @@
-
+/* global fetch */
 import { 
-    CHANGE_SEARCH_FIELD,
-    REQUEST_ROBOTS_PENDING,
-    REQUEST_ROBOTS_SUCCESS,
-    REQUEST_ROBOTS_FAILED,
+  CHANGE_SEARCH_FIELD,
+  REQUEST_ROBOTS_PENDING,
+  REQUEST_ROBOTS_SUCCESS,
+  REQUEST_ROBOTS_FAILED,
 } from './constants.js'
 
 export const setSearchField = text => ({
-    type: CHANGE_SEARCH_FIELD,
-    payload: text
+  type: CHANGE_SEARCH_FIELD,
+  payload: text
 }) 
 
 /* This is by using redux thunk middleware, so once this functions is called
 it return a function and trigger redux thunk who pass dispatch */
 export const requestRobots = () => (dispatch) => {
-    /* 3 States for pending Promise, success or failed */
-    dispatch({ 
-        type: REQUEST_ROBOTS_PENDING
-    })
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then(response=> response.json())
+  /* 3 States for pending Promise, success or failed */
+  dispatch({
+    type: REQUEST_ROBOTS_PENDING
+  })
+  fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
     .then(data => {
-        dispatch({
-            type: REQUEST_ROBOTS_SUCCESS,
-            payload: data
-        })
+      dispatch({
+        type: REQUEST_ROBOTS_SUCCESS,
+        payload: data
+      })
     })
-    .catch( error => {
-        dispatch({
-            type: REQUEST_ROBOTS_FAILED,
-            payload: error
-        })
+  .catch(error => {
+    dispatch({
+      type: REQUEST_ROBOTS_FAILED,
+      payload: error
     })
+  })
 }
-
-

@@ -1,7 +1,9 @@
+/* global it expect */
+
 import { shallow } from 'enzyme'
 import React from 'react'
-import Scroll from '../Scroll'
+import Scroll from '../components/Scroll'
 
 it('Snapshot test for Scroll. Will fall if component has changed.', () => {
-    expect(shallow(<Scroll />)).toMatchSnapshot()
-}) 
+  expect(shallow(<Scroll />)).toMatchSnapshot()
+})
